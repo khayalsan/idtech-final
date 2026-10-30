@@ -6,6 +6,16 @@
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
         <option name="gradleJvm" value="graalvm-jdk-21" />
       </GradleProjectSettings>
+      <GradleProjectSettings>
+        <option name="externalProjectPath" value="$PROJECT_DIR$/ms/ms-order" />
+        <option name="gradleHome" value="" />
+        <option name="gradleJvm" value="graalvm-jdk-21" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$/ms/ms-order" />
+          </set>
+        </option>
+      </GradleProjectSettings>
     </option>
   </component>
 </project>
