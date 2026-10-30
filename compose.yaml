@@ -1,0 +1,15 @@
+﻿services:
+  order-db:
+    image: postgres:17
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ${ORDER_DB_NAME}
+      POSTGRES_USER: ${ORDER_DB_USER}
+      POSTGRES_PASSWORD: ${ORDER_DB_PASSWORD}
+    ports:
+      - "127.0.0.1:${ORDER_DB_PORT}:5342"
+    volumes:
+      - order-db-data:/var/lib/postgresql/data
+
+volumes:
+  order-db-data:
