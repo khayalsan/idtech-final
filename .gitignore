@@ -1,0 +1,23 @@
+﻿# Gradle
+.gradle/
+**/build/
+
+# IntelliJ IDEA
+.idea/
+*.iml
+*.ipr
+*.iws
+out/
+
+# Java
+*.class
+hs_err_pid*
+
+# Environment variables
+.env
+.env.*
+!.env.example
+
+# OS
+.DS_Store
+Thumbs.db
