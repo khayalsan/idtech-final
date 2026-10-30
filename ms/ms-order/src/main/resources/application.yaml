@@ -1,3 +1,17 @@
 spring:
   application:
     name: ms-order
+  config:
+    import: optional:file:./.env[.properties]
+  datasource:
+    url: jdbc:postgresql://localhost:${ORDER_DB_PORT:7000}/${ORDER_DB_NAME}
+    username: ${ORDER_DB_USER}
+    password: ${ORDER_DB_PASSWORD}
+  liquibase:
+    change-log: classpath:/db/changelog/db.changelog-master.yaml
+  jpa:
+    hibernate:
+      ddl-auto: validate
+
+server:
+  port: 8000
