@@ -1,0 +1,112 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1793638879944-1
+      author: Khayal
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - createSequence:
+            incrementBy: 50
+            sequenceName: revinfo_seq
+            startValue: 1
+  - changeSet:
+      id: 1793638879944-2
+      author: Khayal
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  autoIncrement: true
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: pk_order_items
+                  name: id
+                  type: BIGINT
+              - column:
+                  constraints:
+                    nullable: false
+                  name: item_id
+                  type: BIGINT
+              - column:
+                  constraints:
+                    nullable: false
+                  name: quantity
+                  type: INT
+              - column:
+                  name: order_id
+                  type: BIGINT
+            tableName: order_items
+  - changeSet:
+      id: 1793638879944-3
+      author: Khayal
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  autoIncrement: true
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: pk_orders
+                  name: id
+                  type: BIGINT
+            tableName: orders
+  - changeSet:
+      id: 1793638879944-4
+      author: Khayal
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  constraints:
+                    nullable: false
+                  name: rev
+                  type: BIGINT
+              - column:
+                  name: entityname
+                  type: VARCHAR(255)
+            tableName: revchanges
+  - changeSet:
+      id: 1793638879944-5
+      author: Khayal
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: pk_revinfo
+                  name: rev
+                  type: BIGINT
+              - column:
+                  name: revtstmp
+                  type: BIGINT
+            tableName: revinfo
+  - changeSet:
+      id: 1793638879944-6
+      author: Khayal
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: order_id
+            baseTableName: order_items
+            constraintName: FK_ORDER_ITEMS_ON_ORDER
+            referencedColumnNames: id
+            referencedTableName: orders
+  - changeSet:
+      id: 1793638879944-7
+      author: Khayal
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: rev
+            baseTableName: revchanges
+            constraintName: fk_revchanges_on_default_tracking_modified_entities_changelog
+            referencedColumnNames: rev
+            referencedTableName: revinfo
+
