@@ -17,6 +17,21 @@ spring:
     producer:
       key-serializer: org.apache.kafka.common.serialization.StringSerializer
       value-serializer: org.springframework.kafka.support.serializer.JacksonJsonSerializer
+      properties:
+        spring.json.type.mapping: >-
+          order-created:dev.khayal.idtech.msorder.event.OrderCreatedEvent,
+          order-picked-up:dev.khayal.idtech.msorder.event.OrderPickedUpEvent,
+          order-cancelled:dev.khayal.idtech.msorder.event.OrderCancelledEvent,
+          order-rejected:dev.khayal.idtech.msorder.event.OrderRejectedEvent
+    consumer:
+      group-id: ms-order
+      key-deserializer: org.springframework.kafka.support.serializer.ErrorHandlingDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.ErrorHandlingDeserializer
+      properties:
+        spring.deserializer.key.delegate.class: org.apache.kafka.common.serialization.StringDeserializer
+        spring.deserializer.value.delegate.class: org.springframework.kafka.support.serializer.JacksonJsonDeserializer
+        spring.json.type.mapping: ""
+        spring.json.trusted.packages: "dev.khayal.idtech.msorder.event"
 
 
 server:
