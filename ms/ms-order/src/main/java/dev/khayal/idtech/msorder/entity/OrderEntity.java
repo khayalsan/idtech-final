@@ -1,17 +1,26 @@
 package dev.khayal.idtech.msorder.entity;
 
-import jakarta.persistence.*;
+import dev.khayal.idtech.msorder.dto.OrderDto;import jakarta.persistence.*;import jakarta.validation.constraints.Size;import lombok.Getter;import lombok.Setter;
 
-import java.util.ArrayList;
+import java.math.BigDecimal;import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 @Entity
 @Table(name = "orders")
+@Getter @Setter
 public class OrderEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Size(min = 2, max = 100)
+    @Column(nullable = false, length = 100)
+    private String pickupAddress;
+    @Size(min = 2, max = 100)
+    @Column(nullable = false, length = 100)
+    private String deliveryAddress;
+
+    private BigDecimal price;
 
     @OneToMany(
         cascade = CascadeType.ALL,
