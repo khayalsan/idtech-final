@@ -1,6 +1,8 @@
 package dev.khayal.idtech.msorder.entity;
 
-import dev.khayal.idtech.msorder.dto.OrderDto;import jakarta.persistence.*;import jakarta.validation.constraints.Size;import lombok.Getter;import lombok.Setter;
+import dev.khayal.idtech.msorder.dto.OrderDto;
+import dev.khayal.idtech.msorder.enums.OrderStatus;
+import jakarta.persistence.*;import jakarta.validation.constraints.Size;import lombok.Getter;import lombok.Setter;
 
 import java.math.BigDecimal;import java.util.ArrayList;
 import java.util.List;
@@ -20,6 +22,7 @@ public class OrderEntity {
     @Column(nullable = false, length = 100)
     private String deliveryAddress;
 
+    private OrderStatus status;
     private BigDecimal price;
 
     @OneToMany(

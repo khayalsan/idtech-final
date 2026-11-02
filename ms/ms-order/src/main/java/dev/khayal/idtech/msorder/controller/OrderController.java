@@ -13,6 +13,6 @@ public class OrderController {
     private final OrderService orderService;
 
     public void createOrder(@RequestBody @Valid OrderDto orderDto) {
-
+        orderService.createOrder(orderDto);
     }
 }
