@@ -57,7 +57,11 @@
       - grafana-data:/var/lib/grafana
     depends_on:
       - prometheus
-
+  zipkin:
+    image: openzipkin/zipkin:latest
+    container_name: zipkin
+    ports:
+      - "127.0.0.1:9411:9411"
 
 volumes:
   order-db-data:
