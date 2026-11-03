@@ -30,7 +30,7 @@ spring:
       properties:
         spring.deserializer.key.delegate.class: org.apache.kafka.common.serialization.StringDeserializer
         spring.deserializer.value.delegate.class: org.springframework.kafka.support.serializer.JacksonJsonDeserializer
-        spring.json.type.mapping: ""
+        spring.json.type.mapping: "payment-paid:dev.khayal.idtech.msorder.event.PaymentPaidEvent"
         spring.json.trusted.packages: "dev.khayal.idtech.msorder.event"
 
 
