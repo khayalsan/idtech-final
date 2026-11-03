@@ -59,7 +59,7 @@
 		{"id":"cc2929c78404e96b","type":"text","text":"### Status\n- FREE\n- BUSY","x":-1100,"y":-918,"width":250,"height":115},
 		{"id":"7e94d2fb14b8ddd4","type":"text","text":"Courier can\n- View total earnings (turnover)\n- view payment history\n- see current balance","x":-1737,"y":-868,"width":250,"height":175},
 		{"id":"85d531749e1196dd","type":"text","text":"notification_db -> PORT 7003","x":-1840,"y":-260,"width":260,"height":60},
-		{"id":"4e23f4843a217163","type":"text","text":"Prometheus","x":-1840,"y":-64,"width":250,"height":60},
+		{"id":"4e23f4843a217163","type":"text","text":"Prometheus -> PORT 9090","x":-1840,"y":-64,"width":250,"height":60},
 		{"id":"ac059b978dc97636","type":"text","text":"ms-notification -> PORT 8003","x":-1840,"y":-360,"width":260,"height":60},
 		{"id":"6fb87dffb361c3e6","type":"text","text":"ORDER_CREATED\n- Create payment record\n- mark as PENDING","x":-1737,"y":-993,"width":250,"height":109},
 		{"id":"cf46d5bbef5cf321","type":"text","text":"Store all payment records","x":-2020,"y":-913,"width":250,"height":60},
@@ -81,7 +81,7 @@
 		{"id":"02eb6701f7a6b5d4","type":"text","text":"ms-order -> PORT 8000","x":-2680,"y":-360,"width":250,"height":60},
 		{"id":"c07be02e9b35e023","type":"text","text":"order_db -> PORT 7000","x":-2680,"y":-260,"width":250,"height":60},
 		{"id":"b140103e237dbf83","type":"text","text":"Kafka -> PORT 9092","x":-2680,"y":-160,"width":250,"height":60},
-		{"id":"089667d4baad05de","type":"text","text":"Kafka UI -> PORT 9090","x":-2680,"y":-64,"width":250,"height":60},
+		{"id":"089667d4baad05de","type":"text","text":"Kafka UI -> PORT 8080","x":-2680,"y":-64,"width":250,"height":60},
 		{"id":"56e11a9d07600aad","type":"text","text":"Create delivery order","x":-2740,"y":-1033,"width":250,"height":60},
 		{"id":"bd3eff47bacd890b","type":"text","text":"### Track Status\n- CREATED\n- PICKED_UP\n- DELIVERED","x":-2740,"y":-946,"width":250,"height":200}
 	],

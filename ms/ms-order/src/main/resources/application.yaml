@@ -33,6 +33,11 @@ spring:
         spring.json.type.mapping: "payment-paid:dev.khayal.idtech.msorder.event.PaymentPaidEvent"
         spring.json.trusted.packages: "dev.khayal.idtech.msorder.event"
 
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,prometheus
 
 server:
   port: 8000
