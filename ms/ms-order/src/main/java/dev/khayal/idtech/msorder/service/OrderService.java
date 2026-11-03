@@ -20,18 +20,17 @@ public class OrderService {
     private final OrderEventProducer eventProducer;
 
     public void createOrder(OrderDto orderDto) {
-        BigDecimal price = calculatePrice(orderDto);
-        BigDecimal deliveryFee = calculateDeliveryFee(orderDto);
-        OrderEntity orderEntity = orderMapper.toEntity(orderDto);
+        var price = calculatePrice(orderDto);
+        var deliveryFee = calculateDeliveryFee(orderDto);
+        var orderEntity = orderMapper.toEntity(orderDto);
         orderEntity.setStatus(CREATED);
         orderEntity.setPrice(price.add(deliveryFee));
-
-        orderRepository.save(orderEntity);
-        eventProducer.publish(orderMapper.toCreatedEvent(orderEntity));
+        
+        eventProducer.publish(orderMapper.toCreatedEvent(orderRepository.save(orderEntity)));
     }
     public void finishOrder(Long orderId) {
         // TODO: Get Available Courier feign
-        Long courierId = 0L;
+        Long courierId = 1L;
         OrderEntity orderEntity = orderRepository.findById(orderId).orElseThrow(OrderNotFoundException::new);
         if (courierId == null) {
             orderEntity.setStatus(REJECTED);
@@ -43,6 +42,7 @@ public class OrderService {
                 eventProducer.publish(orderMapper.toPickedUpEvent(orderEntity));
             }
         }
+        orderRepository.save(orderEntity);
     }
 
     // TODO: Listen Delivery Complete ? or /deliver
@@ -50,6 +50,7 @@ public class OrderService {
         OrderEntity orderEntity = orderRepository.findById(orderId).orElseThrow(OrderNotFoundException::new);
         orderEntity.setStatus(DELIVERED);
         eventProducer.publish(orderMapper.toDeliveredEvent(orderEntity));
+        orderRepository.save(orderEntity);
     }
 
     private BigDecimal calculatePrice(OrderDto orderDto) {
