@@ -22,6 +22,7 @@ public class OrderEntity {
     @Column(nullable = false, length = 100)
     private String deliveryAddress;
 
+    private Long courierId;
     private OrderStatus status;
     private BigDecimal price;
 
