@@ -1,1 +1,3 @@
 rootProject.name = 'idtech-final'
+
+include 'ms:ms-order'

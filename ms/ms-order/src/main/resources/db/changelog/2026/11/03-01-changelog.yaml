@@ -1,0 +1,41 @@
+databaseChangeLog:
+  - changeSet:
+      id: 03-update-orders
+      author: Khayal
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - addColumn:
+            columns:
+              - column:
+                  name: courier_id
+                  type: BIGINT
+              - column:
+                  name: delivery_address
+                  type: VARCHAR(100)
+              - column:
+                  name: pickup_address
+                  type: VARCHAR(100)
+              - column:
+                  name: price
+                  type: DECIMAL
+              - column:
+                  name: status
+                  type: SMALLINT
+            tableName: orders
+  - changeSet:
+      id: 03-order-delivery-constraint
+      author: Khayal
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - addNotNullConstraint:
+            columnName: delivery_address
+            tableName: orders
+  - changeSet:
+      id: 03-order-pickup-constraint
+      author: Khayal
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - addNotNullConstraint:
+            columnName: pickup_address
+            tableName: orders
+
