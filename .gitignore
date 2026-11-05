@@ -22,3 +22,6 @@ hs_err_pid*
 .DS_Store
 Thumbs.db
 /.obsidian
+
+# graft's local graph cache — regenerable, not committed (run `graft build`).
+/graft/

@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class OrderEventListener {
 	private final PaymentService paymentService;
-	private final CourierBalanceService courierBalanceService;
 
 	@KafkaListener(
 			topics = "orders.created",
@@ -26,6 +25,6 @@ public class OrderEventListener {
 	)
 	public void onOrderDelivered(PaymentEvent event) {
 		// TODO: Change to OrderEvent
-		courierBalanceService.payCourier();
+		paymentService.payCourier();
 	}
 }

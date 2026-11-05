@@ -76,7 +76,7 @@
 		{"id":"248a9d0fe52866b3","type":"text","text":"Assign courier","x":-2450,"y":-946,"width":250,"height":60},
 		{"id":"4046b8abc57844e8","type":"text","text":"### Events\n- ORDER_CREATED\n- ORDER_PICKED_UP\n- ORDER_DELIVERED\n- ORDER_CANCELLED","x":-2450,"y":-871,"width":250,"height":191},
 		{"id":"f2e224bcb8dbe38c","type":"text","text":"Store pickup & delivery address","x":-2450,"y":-1033,"width":250,"height":60},
-		{"id":"02eb6701f7a6b5d4","type":"text","text":"ms-order -> PORT 8000","x":-2680,"y":-360,"width":250,"height":60},
+		{"id":"02eb6701f7a6b5d4","type":"text","text":"order -> PORT 8000","x":-2680,"y":-360,"width":250,"height":60},
 		{"id":"c07be02e9b35e023","type":"text","text":"order_db -> PORT 7000","x":-2680,"y":-260,"width":250,"height":60},
 		{"id":"b140103e237dbf83","type":"text","text":"Kafka -> PORT 9092","x":-2680,"y":-160,"width":250,"height":60},
 		{"id":"089667d4baad05de","type":"text","text":"Kafka UI -> PORT 8080","x":-2680,"y":-64,"width":250,"height":60},

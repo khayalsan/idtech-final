@@ -22,7 +22,7 @@ spring:
           payment-pending:dev.khayal.idtech.payment.event.PaymentPendingEvent,
           payment-paid:dev.khayal.idtech.payment.event.PaymentPaidEvent,
     consumer:
-      group-id: ms-order
+      group-id: order
       key-deserializer: org.springframework.kafka.support.serializer.ErrorHandlingDeserializer
       value-deserializer: org.springframework.kafka.support.serializer.ErrorHandlingDeserializer
       properties:
