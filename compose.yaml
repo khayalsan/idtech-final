@@ -10,6 +10,17 @@
       - "127.0.0.1:${ORDER_DB_PORT}:5432"
     volumes:
       - order-db-data:/var/lib/postgresql/data
+  payment-db:
+    image: postgres:17
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ${PAYMENT_DB_NAME}
+      POSTGRES_USER: ${PAYMENT_DB_USER}
+      POSTGRES_PASSWORD: ${PAYMENT_DB_PASSWORD}
+    ports:
+      - "127.0.0.1:${PAYMENT_DB_PORT}:5432"
+    volumes:
+      - payment-db-data:/var/lib/postgresql/data
   kafka:
     image: apache/kafka:4.4.0
     container_name: kafka
@@ -65,6 +76,7 @@
 
 volumes:
   order-db-data:
+  payment-db-data:
   kafka-data:
   prometheus-data:
   grafana-data:

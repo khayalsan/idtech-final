@@ -1,3 +1,42 @@
 spring:
   application:
-    name: payment
+    name: ms-payment
+  config:
+    import: optional:file:./.env[.properties]
+  datasource:
+    url: jdbc:postgresql://localhost:${PAYMENT_DB_PORT:7001}/${PAYMENT_DB_NAME}
+    username: ${PAYMENT_DB_USER}
+    password: ${PAYMENT_DB_PASSWORD}
+  liquibase:
+    change-log: classpath:/db/changelog/db.changelog-master.yaml
+  jpa:
+    hibernate:
+      ddl-auto: validate
+  kafka:
+    bootstrap-servers: localhost:9092
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JacksonJsonSerializer
+      properties:
+        spring.json.type.mapping: >-
+          payment-pending:dev.khayal.idtech.payment.event.PaymentPendingEvent,
+          payment-paid:dev.khayal.idtech.payment.event.PaymentPaidEvent,
+    consumer:
+      group-id: ms-order
+      key-deserializer: org.springframework.kafka.support.serializer.ErrorHandlingDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.ErrorHandlingDeserializer
+      properties:
+        spring.deserializer.key.delegate.class: org.apache.kafka.common.serialization.StringDeserializer
+        spring.deserializer.value.delegate.class: org.springframework.kafka.support.serializer.JacksonJsonDeserializer
+        spring.json.type.mapping: "payment-paid:dev.khayal.idtech.payment.event.PaymentPaidEvent"
+        # TODO: Change the event mapping
+        spring.json.trusted.packages: "dev.khayal.idtech.payment.event"
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,prometheus
+
+server:
+  port: 8001
