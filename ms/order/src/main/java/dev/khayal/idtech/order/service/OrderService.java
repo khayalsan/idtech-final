@@ -3,6 +3,7 @@ package dev.khayal.idtech.order.service;
 import dev.khayal.idtech.order.exception.OrderNotFoundException;
 import dev.khayal.idtech.order.dto.OrderDto;
 import dev.khayal.idtech.order.entity.OrderEntity;
+import dev.khayal.idtech.order.feign.CourierClient;
 import dev.khayal.idtech.order.mapper.OrderMapper;
 import dev.khayal.idtech.order.repository.OrderRepository;
 import lombok.RequiredArgsConstructor;
@@ -18,6 +19,7 @@ public class OrderService {
     private final OrderRepository orderRepository;
     private final OrderMapper orderMapper;
     private final OrderEventProducer eventProducer;
+    private final CourierClient courierClient;
 
     public void createOrder(OrderDto orderDto) {
         var price = calculatePrice(orderDto);
@@ -29,8 +31,7 @@ public class OrderService {
         eventProducer.publish(orderMapper.toCreatedEvent(orderRepository.save(orderEntity)));
     }
     public void finishOrder(Long orderId) {
-        // TODO: Get Available Courier feign
-        Long courierId = 1L;
+        Long courierId = courierClient.getAvailable(); // TODO: Exception
         OrderEntity orderEntity = orderRepository.findById(orderId).orElseThrow(OrderNotFoundException::new);
         if (courierId == null) {
             orderEntity.setStatus(REJECTED);

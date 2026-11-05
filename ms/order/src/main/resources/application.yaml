@@ -33,6 +33,11 @@ spring:
         spring.json.type.mapping: "payment-paid:dev.khayal.idtech.order.event.PaymentPaidEvent"
         spring.json.trusted.packages: "dev.khayal.idtech.order.event"
 
+services:
+  courier:
+    url: http://localhost:8002
+#    url: http://ms-courier:8002
+
 management:
   endpoints:
     web:
