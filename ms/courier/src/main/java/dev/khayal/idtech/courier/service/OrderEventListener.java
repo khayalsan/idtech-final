@@ -24,6 +24,6 @@ public class OrderEventListener {
         groupId = "ms-courier"
     )
     public void onOrderDelivered(OrderDeliveredEvent event) {
-        courierService.markBusy(event.courierId());
+        courierService.markFree(event.courierId());
     }
 }

@@ -4,7 +4,7 @@ import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-@FeignClient(name = "couriers", url = "${services.courier.url}")
+@FeignClient(name = "couriers", url = "${services.courier.url}", configuration = FeignConfig.class)
 public interface CourierClient {
     @RequestMapping(method = RequestMethod.GET, value = "/available")
     Long getAvailable();

@@ -1,4 +1,5 @@
 package dev.khayal.idtech.courier.dto;
 
-public record CourierRequest() {
+public record CourierRequest(
+    String name) {
 }

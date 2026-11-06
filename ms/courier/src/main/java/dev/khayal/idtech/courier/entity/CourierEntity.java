@@ -15,4 +15,5 @@ public class CourierEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private CourierStatus status;
+    private String name;
 }

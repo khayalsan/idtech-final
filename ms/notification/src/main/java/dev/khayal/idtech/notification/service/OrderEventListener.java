@@ -37,18 +37,4 @@ public class OrderEventListener {
 	public void onOrderDelivered(OrderDeliveredEvent event) {
 		notificationService.send(notificationMapper.toNotificationEntity(event));
 	}
-	@KafkaListener(
-			topics = "payments.pending",
-			groupId = "ms-notification"
-	)
-	public void onPaymentPending(PaymentPendingEvent event) {
-		notificationService.send(notificationMapper.toNotificationEntity(event));
-	}
-	@KafkaListener(
-			topics = "payments.paid",
-			groupId = "ms-notification"
-	)
-	public void onPaymentPaid(PaymentPaidEvent event) {
-		notificationService.send(notificationMapper.toNotificationEntity(event));
-	}
 }
