@@ -1,5 +1,6 @@
 package dev.khayal.idtech.courier.service;
 
+import dev.khayal.idtech.courier.exception.CourierNotFoundException;
 import dev.khayal.idtech.courier.mapper.CourierMapper;
 import dev.khayal.idtech.courier.repository.CourierRepository;
 import lombok.RequiredArgsConstructor;
@@ -15,19 +16,18 @@ public class CourierService {
 	private final CourierMapper courierMapper;
 
 	public void markBusy(Long id) {
-		var courier = courierRepository.findById(id).orElseThrow(); // TODO: Exception
+		var courier = courierRepository.findById(id).orElseThrow(CourierNotFoundException::new);
 		courier.setStatus(BUSY);
 		courierRepository.save(courier);
 	}
 
 	public void markFree(Long id) {
-		var courier = courierRepository.findById(id).orElseThrow(); // TODO: Exception
+		var courier = courierRepository.findById(id).orElseThrow(CourierNotFoundException::new);
 		courier.setStatus(FREE);
 		courierRepository.save(courier);
 	}
 
 	public Long getAvailable() {
-		// TODO: Exception
-		return courierRepository.findFirstByStatus(FREE).orElseThrow().getId();
+		return courierRepository.findFirstByStatus(FREE).orElseThrow(CourierNotFoundException::new).getId();
 	}
 }

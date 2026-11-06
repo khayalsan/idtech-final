@@ -56,7 +56,7 @@
 		{"id":"259b6ff96dff66a2","type":"text","text":"Payment Service","x":1740,"y":263,"width":250,"height":60,"color":"4"},
 		{"id":"7540df25f56c96b6","type":"text","text":"Mark as COMPLETED","x":1740,"y":563,"width":250,"height":60,"color":"4"},
 		{"id":"05b8258249b5729e","type":"text","text":"Courier Service","x":1760,"y":-595,"width":250,"height":60,"color":"4"},
-		{"id":"1ed096031569fdf1","type":"text","text":"Get Available Courier","x":1760,"y":-715,"width":250,"height":60},
+		{"id":"1ed096031569fdf1","type":"text","text":"Get Available Courier","x":1760,"y":-715,"width":250,"height":60,"color":"4"},
 		{"id":"96f9ede38c619023","type":"text","text":"Finish order","x":1760,"y":-811,"width":250,"height":60,"color":"4"},
 		{"id":"7ab69cd207faa892","type":"text","text":"Create Order:\n- status = CREATED\n- save price","x":1760,"y":-1059,"width":250,"height":113,"color":"4"},
 		{"id":"b8b39b80ce28f02c","type":"text","text":"Calculate delivery fee","x":1760,"y":-1137,"width":250,"height":60,"color":"5"},
