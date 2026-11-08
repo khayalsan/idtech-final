@@ -1,3 +1,6 @@
 rootProject.name = 'idtech-final'
 
-include 'ms:ms-order'
+include 'ms:order'
+include 'ms:payment'
+include 'ms:notification'
+include 'ms:courier'

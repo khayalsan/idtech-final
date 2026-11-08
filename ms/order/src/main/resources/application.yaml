@@ -1,0 +1,48 @@
+spring:
+  application:
+    name: order
+  config:
+    import: optional:file:./.env[.properties],optional:file:../../.env[.properties]
+  datasource:
+    url: jdbc:postgresql://localhost:${ORDER_DB_PORT:7000}/${ORDER_DB_NAME}
+    username: ${ORDER_DB_USER}
+    password: ${ORDER_DB_PASSWORD}
+  liquibase:
+    change-log: classpath:/db/changelog/db.changelog-master.yaml
+  jpa:
+    hibernate:
+      ddl-auto: validate
+  kafka:
+    bootstrap-servers: localhost:9092
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JacksonJsonSerializer
+      properties:
+        spring.json.type.mapping: >-
+          order-created:dev.khayal.idtech.order.event.OrderCreatedEvent,
+          order-picked-up:dev.khayal.idtech.order.event.OrderPickedUpEvent,
+          order-cancelled:dev.khayal.idtech.order.event.OrderCancelledEvent,
+          order-rejected:dev.khayal.idtech.order.event.OrderRejectedEvent
+    consumer:
+      group-id: order
+      key-deserializer: org.springframework.kafka.support.serializer.ErrorHandlingDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.ErrorHandlingDeserializer
+      properties:
+        spring.deserializer.key.delegate.class: org.apache.kafka.common.serialization.StringDeserializer
+        spring.deserializer.value.delegate.class: org.springframework.kafka.support.serializer.JacksonJsonDeserializer
+        spring.json.type.mapping: "payment-paid:dev.khayal.idtech.order.event.PaymentPaidEvent"
+        spring.json.trusted.packages: "dev.khayal.idtech.order.event"
+
+services:
+  courier:
+    url: http://localhost:8002
+#    url: http://ms-courier:8002
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,prometheus
+
+server:
+  port: 8000

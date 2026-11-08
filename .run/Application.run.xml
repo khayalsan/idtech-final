@@ -1,7 +1,8 @@
 <component name="ProjectRunConfigurationManager">
   <configuration default="false" name="Application" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
-    <module name="ms-order.main" />
-    <option name="SPRING_BOOT_MAIN_CLASS" value="dev.khayal.idtech.msorder.Application" />
+    <module name="idtech-final.ms.order.main" />
+    <option name="SPRING_BOOT_MAIN_CLASS" value="dev.khayal.idtech.order.Application" />
+    <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
     <method v="2">
       <option name="Make" enabled="true" />
     </method>
