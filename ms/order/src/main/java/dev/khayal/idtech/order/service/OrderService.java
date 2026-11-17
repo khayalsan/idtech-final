@@ -7,6 +7,7 @@ import dev.khayal.idtech.order.feign.CourierClient;
 import dev.khayal.idtech.order.mapper.OrderMapper;
 import dev.khayal.idtech.order.repository.OrderRepository;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
@@ -15,6 +16,7 @@ import static dev.khayal.idtech.order.enums.OrderStatus.*;
 
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class OrderService {
     private final OrderRepository orderRepository;
     private final OrderMapper orderMapper;
@@ -22,15 +24,17 @@ public class OrderService {
     private final CourierClient courierClient;
 
     public void createOrder(OrderDto orderDto) {
+        log.info("Creating order {}", orderDto);
         var price = calculatePrice(orderDto);
         var deliveryFee = calculateDeliveryFee(orderDto);
         var orderEntity = orderMapper.toEntity(orderDto);
         orderEntity.setStatus(CREATED);
         orderEntity.setPrice(price.add(deliveryFee));
-        
         eventProducer.publish(orderMapper.toCreatedEvent(orderRepository.save(orderEntity)));
+        log.info("Created order {}", orderEntity);
     }
     public void finishOrder(Long orderId) {
+        log.info("Finishing order {}", orderId);
         Long courierId = courierClient.getAvailable(); // TODO: Exception
         OrderEntity orderEntity = orderRepository.findById(orderId).orElseThrow(OrderNotFoundException::new);
         if (courierId == null) {
@@ -44,14 +48,17 @@ public class OrderService {
             }
         }
         orderRepository.save(orderEntity);
+        log.info("Finished order {}", orderEntity);
     }
 
     // TODO: Listen Delivery Complete ? or /deliver
     public void orderDelivered(Long orderId) {
+        log.info("Delivered order Start {}", orderId);
         OrderEntity orderEntity = orderRepository.findById(orderId).orElseThrow(OrderNotFoundException::new);
         orderEntity.setStatus(DELIVERED);
         eventProducer.publish(orderMapper.toDeliveredEvent(orderEntity));
         orderRepository.save(orderEntity);
+        log.info("Delivered order End {}", orderEntity);
     }
 
     private BigDecimal calculatePrice(OrderDto orderDto) {
