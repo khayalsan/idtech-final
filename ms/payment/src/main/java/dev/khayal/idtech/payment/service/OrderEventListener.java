@@ -2,9 +2,11 @@ package dev.khayal.idtech.payment.service;
 
 import dev.khayal.idtech.payment.event.PaymentEvent;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Service;
 
+@Slf4j
 @Service
 @RequiredArgsConstructor
 public class OrderEventListener {
@@ -16,6 +18,7 @@ public class OrderEventListener {
 	)
 	public void onOrderCreated(PaymentEvent event) {
 		// TODO: Change to OrderEvent
+		log.info("Received order event {}", event);
 		paymentService.createPayment();
 	}
 
@@ -25,6 +28,7 @@ public class OrderEventListener {
 	)
 	public void onOrderDelivered(PaymentEvent event) {
 		// TODO: Change to OrderEvent
+		log.info("Received order event {}", event);
 		paymentService.payCourier();
 	}
 }
