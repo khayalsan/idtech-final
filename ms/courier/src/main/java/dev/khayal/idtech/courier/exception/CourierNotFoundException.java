@@ -5,6 +5,6 @@ public class CourierNotFoundException extends RuntimeException {
         super("COURIER_NOT_FOUND");
     }
     public CourierNotFoundException(String message) {
-        super("COURIER_NOT_FOUND" + message);
+        super("COURIER_NOT_FOUND: ".concat(message));
     }
 }
