@@ -8,7 +8,7 @@ spring:
     username: ${PAYMENT_DB_USER}
     password: ${PAYMENT_DB_PASSWORD}
   liquibase:
-    change-log: classpath:/db/changelog/db.changelog-master.yaml
+    change-log: classpath:/db/changelog/master.yaml
   jpa:
     hibernate:
       ddl-auto: validate
