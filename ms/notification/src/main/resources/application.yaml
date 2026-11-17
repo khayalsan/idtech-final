@@ -8,7 +8,7 @@ spring:
     username: ${NOTIFICATION_DB_USER}
     password: ${NOTIFICATION_DB_PASSWORD}
   liquibase:
-    change-log: classpath:/db/changelog/db.changelog-master.yaml
+    change-log: classpath:/db/changelog/master.yaml
   jpa:
     hibernate:
       ddl-auto: validate

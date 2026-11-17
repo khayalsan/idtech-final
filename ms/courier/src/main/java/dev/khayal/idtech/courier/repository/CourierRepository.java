@@ -10,4 +10,6 @@ import java.util.Optional;
 @Repository
 public interface CourierRepository extends JpaRepository<CourierEntity, Long> {
     Optional<CourierEntity> findFirstByStatus(CourierStatus status);
+
+    Optional<CourierEntity> findByIdAndStatus(Long id, CourierStatus status);
 }

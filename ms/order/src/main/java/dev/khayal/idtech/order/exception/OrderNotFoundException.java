@@ -5,6 +5,6 @@ public class OrderNotFoundException extends RuntimeException {
 		super("ORDER_NOT_FOUND");
 	}
 	public OrderNotFoundException(String message) {
-		super("ORDER_NOT_FOUND: " + message);
+		super("ORDER_NOT_FOUND: ".concat(message));
 	}
 }
