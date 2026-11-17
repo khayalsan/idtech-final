@@ -34,4 +34,15 @@ public class OrderEntity {
     )
     @JoinColumn(name = "order_id")
     private List<OrderItemEntity> items = new ArrayList<>();
+
+    public boolean equals(Object object) {
+        if (object == null || getClass() != object.getClass()) return false;
+        if (!super.equals(object)) return false;
+        OrderEntity that = (OrderEntity) object;
+        return java.util.Objects.equals(id, that.id);
+    }
+
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), id);
+    }
 }

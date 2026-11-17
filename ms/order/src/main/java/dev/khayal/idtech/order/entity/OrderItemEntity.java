@@ -14,4 +14,15 @@ public class OrderItemEntity {
     @Positive
     @Column(nullable = false)
     private Integer quantity;
+
+    public boolean equals(Object object) {
+        if (object == null || getClass() != object.getClass()) return false;
+        if (!super.equals(object)) return false;
+        OrderItemEntity that = (OrderItemEntity) object;
+        return java.util.Objects.equals(id, that.id);
+    }
+
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), id);
+    }
 }
