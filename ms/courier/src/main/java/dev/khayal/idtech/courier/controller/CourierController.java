@@ -1,6 +1,8 @@
 package dev.khayal.idtech.courier.controller;
 
 import dev.khayal.idtech.courier.dto.CourierRequest;
+import dev.khayal.idtech.courier.dto.CourierResponse;
+import dev.khayal.idtech.courier.mapper.CourierMapper;
 import dev.khayal.idtech.courier.service.CourierService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -18,7 +20,7 @@ public class CourierController {
 	}
 
 	@GetMapping("/available")
-	public Long getAvailable() {
+	public CourierResponse getAvailable() {
 		return courierService.getAvailable();
 	}
 }

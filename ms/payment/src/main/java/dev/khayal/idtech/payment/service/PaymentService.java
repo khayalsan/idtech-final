@@ -6,6 +6,7 @@ import dev.khayal.idtech.payment.repository.CourierBalanceRepository;
 import dev.khayal.idtech.payment.repository.PaymentRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
 
@@ -29,6 +30,8 @@ public class PaymentService {
 		// TODO: implement
 	}
 
+
+	@Transactional
 	public void payCourier() {
 		Long courierId = 1L; // TODO: get id
 		var earning = calculateCourierEarning();
@@ -38,9 +41,6 @@ public class PaymentService {
 
 		var paymentEntity = paymentRepository.findById(courierId).orElseThrow(); // TODO: Exception;
 		paymentEntity.setStatus(COMPLETED);
-
-		paymentRepository.save(paymentEntity);
-		courierBalanceRepository.save(courierBalanceEntity);
 	}
 
 	private BigDecimal calculateCourierEarning() {
